@@ -75,12 +75,13 @@ public class HotelServiceImpl implements HotelService {
             String country,
             String amenity) {
 
-        Specification<Hotel> specification = Specification
-                .where(HotelSpecification.hasName(name))
-                .and(HotelSpecification.hasBrand(brand))
-                .and(HotelSpecification.hasCity(city))
-                .and(HotelSpecification.hasCountry(country))
-                .and(HotelSpecification.hasAmenity(amenity));
+        Specification<Hotel> specification = Specification.allOf(
+                HotelSpecification.hasName(name),
+                HotelSpecification.hasBrand(brand),
+                HotelSpecification.hasCity(city),
+                HotelSpecification.hasCountry(country),
+                HotelSpecification.hasAmenity(amenity)
+        );
 
         List<Hotel> hotels = hotelRepository.findAll(specification);
 
