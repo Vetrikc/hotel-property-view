@@ -12,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -90,9 +91,11 @@ public class HotelController {
     @Operation(summary = "Добавить удобства отелю")
     public void addAmenities(
             @PathVariable Long id,
-            @RequestBody AmenityRequest request
+            @RequestBody List<String> amenities
     ) {
 
+        AmenityRequest request = new AmenityRequest();
+        request.setAmenities(amenities);
         hotelService.addAmenities(id, request);
     }
 
