@@ -91,11 +91,8 @@ public class HotelController {
     @Operation(summary = "Добавить удобства отелю")
     public void addAmenities(
             @PathVariable Long id,
-            @RequestBody List<String> amenities
+            @Valid @RequestBody AmenityRequest request
     ) {
-
-        AmenityRequest request = new AmenityRequest();
-        request.setAmenities(amenities);
         hotelService.addAmenities(id, request);
     }
 
